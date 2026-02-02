@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '../components/InputOTP';
 import { Box, Button, Flex, Link, Main } from '@strapi/design-system';
 import { SingleSelect, SingleSelectOption, Typography } from '@strapi/design-system';
 import { RESPONSIVE_DEFAULT_SPACING, useAuth } from '@strapi/strapi/admin';
 
 // Types
-
 import type { StrapiApp } from '@strapi/strapi/admin';
 import type { RouteObject } from 'react-router-dom';
 
@@ -131,7 +131,19 @@ const VerifyPage = () => {
 
             <Box>
               <Flex direction="column" alignItems="stretch" gap={6}>
-                Fake Input Here
+                <InputOTP maxLength={6}>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                  </InputOTPGroup>
+                  <InputOTPSeparator />
+                  <InputOTPGroup>
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                  </InputOTPGroup>
+                </InputOTP>
                 <Button
                   fullWidth
                   type="submit"
