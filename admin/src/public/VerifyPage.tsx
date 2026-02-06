@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '../components/InputOTP';
-import { Box, Button, Flex, Link, Main } from '@strapi/design-system';
+import { Box, Button, Flex, Main } from '@strapi/design-system';
 import { SingleSelect, SingleSelectOption, TextInput, Typography } from '@strapi/design-system';
 import { RESPONSIVE_DEFAULT_SPACING, useAuth } from '@strapi/strapi/admin';
 
@@ -84,7 +84,7 @@ const Logo = ({ fallbackIcon }: { fallbackIcon: string }) => {
 };
 
 const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
-  const { token } = useAuth('MFA', (auth) => auth);
+  const auth = useAuth('MFA', (auth) => auth);
 
   const [error, setError] = useState<string | null>(null);
   const [useRecoveryCode, setUseRecoveryCode] = useState(false);
@@ -126,8 +126,8 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
       return name === 'strapi_admin_mfa' ? value.trim() : acc;
     }, null);
 
-    if (token || !mfaToken) window.location.replace('/admin');
-  }, [token]);
+    if (auth?.token || !mfaToken) window.location.replace('/admin');
+  }, [auth?.token]);
 
   return (
     <div>

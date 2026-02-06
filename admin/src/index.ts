@@ -18,6 +18,21 @@ const plugin: StrapiApp['appPlugins'][string] = {
       name: PLUGIN_ID,
     });
 
+    app.addSettingsLink('global', {
+      intlLabel: {
+        id: 'better-auth.plugin.name',
+        defaultMessage: 'Better Auth Settings',
+      },
+      id: 'better-auth-settings',
+      to: `/settings/${PLUGIN_ID}`,
+      Component: async () => {
+        const component = await import('./settings/SettingsPage');
+
+        return component;
+      },
+      permissions: [],
+    });
+
     app.addMiddlewares([mfaRedirect]);
 
     InjectVerify(app);
