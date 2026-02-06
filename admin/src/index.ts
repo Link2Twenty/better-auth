@@ -44,6 +44,16 @@ const plugin: StrapiApp['appPlugins'][string] = {
       Component: async () => import('./injection/ProfileToggle'),
     });
 
+    injections.registerRoute({
+      id: 'admin-reset',
+      route: '/admin/settings/users/:id',
+      selector: '#main-content form[method="put"] > :nth-child(2) > div > div:nth-child(2)',
+      Component: async () =>
+        import('./injection/AdminReset') as Promise<{
+          default: React.ComponentType<unknown>;
+        }>,
+    });
+
     InjectVerify(app);
   },
 
