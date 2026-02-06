@@ -90,8 +90,6 @@ const attach = async (state: RouterState, strapi: StrapiApp): Promise<void> => {
     root = createRoot(container);
   }
 
-  console.log(strapi);
-
   // Render the SSO button
   root.render(
     <Providers store={strapi.store} configurations={strapi.configurations}>
@@ -112,7 +110,7 @@ type ProvidersProps = {
 const Providers = ({ children, store, configurations }: ProvidersProps) => {
   const state = store?.getState();
   const themeName = state?.admin_app.theme.currentTheme || 'light';
-  const locale = configurations.locales[0] || 'en';
+  const locale = state?.admin_app.language.locale || 'en';
   const translations: Record<string, Record<string, string>> = configurations.translations || {};
 
   const appMessages = defaultsDeep(translations[locale], translations.en);
