@@ -2,7 +2,7 @@ import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { InjectVerify } from './public/VerifyPage';
-import { registerInjectionRoute } from './injection';
+import { initialiseInjections } from 'strapi-admin-portal';
 
 // Types
 import type { StrapiApp } from '@strapi/strapi/admin';
@@ -35,19 +35,14 @@ const plugin: StrapiApp['appPlugins'][string] = {
 
     app.addMiddlewares([mfaRedirect]);
 
-    registerInjectionRoute(
-      {
-        id: 'profile-toggle',
-        route: '/admin/me',
-        selector: '#main-content form[method="put"] > :nth-child(2) > div > div > div:nth-child(2)',
-        Component: async () => {
-          const component = await import('./injection/ProfileToggle');
+    const injections = initialiseInjections(app);
 
-          return component;
-        },
-      },
-      app
-    );
+    injections.registerRoute({
+      id: 'profile-toggle',
+      route: '/admin/me',
+      selector: '#main-content form[method="put"] > :nth-child(2) > div > div > div:nth-child(2)',
+      Component: async () => import('./injection/ProfileToggle'),
+    });
 
     InjectVerify(app);
   },
