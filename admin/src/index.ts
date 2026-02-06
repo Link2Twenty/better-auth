@@ -20,7 +20,7 @@ const plugin: StrapiApp['appPlugins'][string] = {
 
     app.addSettingsLink('global', {
       intlLabel: {
-        id: 'better-auth.plugin.name',
+        id: getTranslation('plugin.name'),
         defaultMessage: 'Better Auth Settings',
       },
       id: 'better-auth-settings',

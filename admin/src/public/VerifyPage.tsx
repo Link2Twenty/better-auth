@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+// Components
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '../components/InputOTP';
 import { Box, Button, Flex, Main } from '@strapi/design-system';
 import { SingleSelect, SingleSelectOption, TextInput, Typography } from '@strapi/design-system';
 import { RESPONSIVE_DEFAULT_SPACING, useAuth } from '@strapi/strapi/admin';
+
+// Helpers
+import { getTranslation } from '../utils/getTranslation';
+
+// Hooks
+import { useIntl } from 'react-intl';
 
 // Types
 import type { StrapiApp } from '@strapi/strapi/admin';
@@ -37,9 +45,22 @@ const Wrapper = styled(Box)`
 `;
 
 const LocaleToggle = () => {
+  const { formatMessage, locale } = useIntl();
+  const localeNames: Record<string, string> = useSelector(
+    (state: any) => state.admin_app.language.localeNames
+  );
+  const dispatch = useDispatch();
+
   return (
-    <SingleSelect aria-label={'Select interface language'} value={'en'} onChange={() => {}}>
-      {Object.entries({ en: 'English' }).map(([language, name]) => (
+    <SingleSelect
+      aria-label={formatMessage({
+        id: 'global.localeToggle.label',
+        defaultMessage: 'Select interface language',
+      })}
+      value={locale}
+      onChange={(language: string) => dispatch({ type: 'admin/setLocale', payload: language })}
+    >
+      {Object.entries(localeNames).map(([language, name]) => (
         <SingleSelectOption key={language} value={language}>
           {name}
         </SingleSelectOption>
@@ -85,6 +106,7 @@ const Logo = ({ fallbackIcon }: { fallbackIcon: string }) => {
 
 const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
   const auth = useAuth('MFA', (auth) => auth);
+  const { formatMessage } = useIntl();
 
   const [error, setError] = useState<string | null>(null);
   const [useRecoveryCode, setUseRecoveryCode] = useState(false);
@@ -113,7 +135,12 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
       const target = new URLSearchParams(window.location.search).get('redirectTo') || '/admin';
       window.location.replace(target);
     } catch (error) {
-      setError('Invalid code. Please try again.');
+      setError(
+        formatMessage({
+          id: getTranslation('verify_page.error'),
+          defaultMessage: 'Invalid code. Please try again.',
+        })
+      );
       (event.currentTarget as HTMLFormElement).reset();
     }
   };
@@ -158,7 +185,10 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
 
               <Box paddingTop={6} paddingBottom={1}>
                 <Typography variant="alpha" tag="h1" textAlign="center">
-                  Verify Your Identity
+                  {formatMessage({
+                    id: getTranslation('verify_page.title'),
+                    defaultMessage: 'Verify Your Identity',
+                  })}
                 </Typography>
               </Box>
 
@@ -169,7 +199,10 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
                   textAlign="center"
                   display="block"
                 >
-                  Enter your verification code to continue.
+                  {formatMessage({
+                    id: getTranslation('verify_page.subtitle'),
+                    defaultMessage: 'Enter your verification code to continue.',
+                  })}
                 </Typography>
               </Box>
             </Flex>
@@ -183,9 +216,9 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
                     </Typography>
                   ) : null}
                   {useRecoveryCode ? (
-                    <TextInput name="code" id="code" />
+                    <TextInput name="code" id="code" autoFocus />
                   ) : (
-                    <InputOTP maxLength={6} name="code" id="code">
+                    <InputOTP maxLength={6} name="code" id="code" autoFocus>
                       <InputOTPGroup>
                         <InputOTPSlot index={0} />
                         <InputOTPSlot index={1} />
@@ -206,7 +239,10 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
                     style={{ height: '3.2rem' }}
                     type="submit"
                   >
-                    Submit Code
+                    {formatMessage({
+                      id: getTranslation('verify_page.submit'),
+                      defaultMessage: 'Submit Code',
+                    })}
                   </Button>
                 </Flex>
               </form>
@@ -216,7 +252,15 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
           <Flex justifyContent="center">
             <Box paddingTop={4}>
               <Button variant="ghost" onClick={() => setUseRecoveryCode((prev) => !prev)}>
-                {useRecoveryCode ? 'Use verification code' : 'Use recovery code'}
+                {useRecoveryCode
+                  ? formatMessage({
+                      id: getTranslation('verify_page.use_verification_code'),
+                      defaultMessage: 'Use verification code',
+                    })
+                  : formatMessage({
+                      id: getTranslation('verify_page.use_recovery_code'),
+                      defaultMessage: 'Use recovery code',
+                    })}
               </Button>
             </Box>
           </Flex>
