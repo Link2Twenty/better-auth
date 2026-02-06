@@ -93,7 +93,7 @@ export default function ConfirmModal({
                         'Enter the 6-digit code from your authenticator app to confirm.',
                     })}
                   </Typography>
-                  <InputOTP maxLength={6} name="otp" id="otp">
+                  <InputOTP maxLength={6} name="otp" id="otp" autoFocus>
                     <InputOTPGroup>
                       <InputOTPSlot index={0} />
                       <InputOTPSlot index={1} />

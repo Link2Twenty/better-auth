@@ -43,9 +43,9 @@ export default function RemoveModal({ open, onOpenChange, onSubmit }: RemoveModa
                 })}
               </Typography>
               {showRecovery ? (
-                <TextInput name="otp" id="otp" />
+                <TextInput name="otp" id="otp" autoFocus />
               ) : (
-                <InputOTP maxLength={6} name="otp" id="otp">
+                <InputOTP maxLength={6} name="otp" id="otp" autoFocus>
                   <InputOTPGroup>
                     <InputOTPSlot index={0} />
                     <InputOTPSlot index={1} />
