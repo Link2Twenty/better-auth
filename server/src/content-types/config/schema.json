@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "better-auth-config",
+  "info": {
+    "singularName": "better-auth-config",
+    "pluralName": "better-auth-configs",
+    "displayName": "Better Auth Config"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "enforce": {
+      "type": "boolean",
+      "default": false
+    },
+    "issuer": {
+      "type": "string",
+      "required": false,
+      "default": "Strapi"
+    }
+  }
+}
