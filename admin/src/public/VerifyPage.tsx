@@ -58,7 +58,7 @@ const LocaleToggle = () => {
         defaultMessage: 'Select interface language',
       })}
       value={locale}
-      onChange={(language: string) => dispatch({ type: 'admin/setLocale', payload: language })}
+      onChange={(language) => dispatch({ type: 'admin/setLocale', payload: language })}
     >
       {Object.entries(localeNames).map(([language, name]) => (
         <SingleSelectOption key={language} value={language}>
@@ -235,7 +235,7 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
                   <Button
                     fullWidth
                     size="L"
-                    variant="primary"
+                    variant="default"
                     style={{ height: '3.2rem' }}
                     type="submit"
                   >

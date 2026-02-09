@@ -43,7 +43,7 @@ export default function ConfirmModal({
           <Modal.Body>
             {passcodes ? (
               <Flex direction="column" alignItems="center" gap={4} marginTop={4} marginBottom={4}>
-                <Typography align="center">
+                <Typography textAlign="center">
                   {formatMessage({
                     id: getTranslation('profile.recovery_codes'),
                     defaultMessage:
@@ -57,7 +57,7 @@ export default function ConfirmModal({
                     </Grid.Item>
                   ))}
                 </Grid.Root>
-                <Typography variant="pi" align="center">
+                <Typography variant="pi" textAlign="center">
                   {formatMessage({
                     id: getTranslation('profile.recovery_codes_warning'),
                     defaultMessage:
@@ -113,7 +113,7 @@ export default function ConfirmModal({
           <Modal.Footer>
             {passcodes && <span />}
             <Modal.Close>
-              <Button variant={passcodes ? '' : 'tertiary'}>
+              <Button variant={passcodes ? undefined : 'tertiary'}>
                 {passcodes
                   ? formatMessage({ id: 'global.close', defaultMessage: 'Close' })
                   : formatMessage({ id: 'app.components.Button.cancel', defaultMessage: 'Cancel' })}
