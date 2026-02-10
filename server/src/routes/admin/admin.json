@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "path": "/admin/user/:id",
+    "handler": "admin.isEnabled",
+    "info": { "apiName": "isEnabled", "pluginName": "strapi-identity", "type": "content-api" },
+    "config": {
+      "policies": [
+        "admin::isAuthenticatedAdmin",
+        {
+          "name": "admin::hasPermissions",
+          "config": { "actions": ["plugin::strapi-identity.settings.read"] }
+        }
+      ]
+    }
+  },
+  {
+    "method": "DELETE",
+    "path": "/admin/user/:id",
+    "handler": "admin.reset",
+    "info": { "apiName": "reset", "pluginName": "strapi-identity", "type": "content-api" },
+    "config": {
+      "policies": [
+        "admin::isAuthenticatedAdmin",
+        {
+          "name": "admin::hasPermissions",
+          "config": { "actions": ["plugin::strapi-identity.settings.update"] }
+        }
+      ]
+    }
+  }
+]

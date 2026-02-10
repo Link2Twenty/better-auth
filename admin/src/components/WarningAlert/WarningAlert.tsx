@@ -7,6 +7,7 @@ export interface WarningAlertProps {
   title?: string;
   children: React.ReactNode;
   confirmText?: string;
+  loading?: boolean;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -16,6 +17,7 @@ export default function WarningAlert({
   title,
   children,
   confirmText,
+  loading,
   onConfirm,
   onCancel,
 }: WarningAlertProps) {
@@ -34,8 +36,8 @@ export default function WarningAlert({
         <Dialog.Body>{children}</Dialog.Body>
         <Dialog.Footer>
           <Flex justifyContent="stretch" gap={1} width="100%">
-            <Dialog.Cancel>
-              <Button fullWidth variant="tertiary">
+            <Dialog.Cancel disabled={loading}>
+              <Button fullWidth variant="tertiary" disabled={loading}>
                 {confirmText ||
                   formatMessage({
                     id: 'components.popUpWarning.button.cancel',
@@ -44,7 +46,7 @@ export default function WarningAlert({
               </Button>
             </Dialog.Cancel>
             <Dialog.Action>
-              <Button fullWidth variant="danger-light" onClick={onConfirm}>
+              <Button fullWidth variant="danger-light" onClick={onConfirm} loading={loading}>
                 {confirmText ||
                   formatMessage({
                     id: 'components.popUpWarning.button.confirm',
