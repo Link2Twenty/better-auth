@@ -5,6 +5,19 @@ import type { Plugin } from '@strapi/types';
 type controller = Plugin.LoadedPlugin['controllers'][string];
 
 const config = ({ strapi }: { strapi: Core.Strapi }): controller => ({
+  async isEnabled(ctx) {
+    try {
+      const enabled = await strapi.service('plugin::better-auth.config').isEnabled();
+
+      ctx.status = 200;
+      ctx.body = { data: enabled, error: null };
+    } catch (error) {
+      console.log('Error checking if Better Auth is enabled:', error);
+
+      ctx.status = 500;
+      ctx.body = { data: null, error: 'Server Error' };
+    }
+  },
   async getConfig(ctx) {
     try {
       const config = await strapi.service('plugin::better-auth.config').getConfig();
