@@ -21,7 +21,14 @@ Detailed Multi-Factor Authentication (MFA) plugin for Strapi v5+. Secure your St
 
 To install this plugin, you'll need to include it in your Strapi project.
 
-1. **Install the dependency** (if published to npm) or link the local plugin.
+1. **Install the dependency**:
+
+```bash
+npm install strapi-identity
+# or
+yarn add strapi-identity
+```
+
 2. **Enable the plugin** in `config/plugins.ts`:
 
 ```typescript
@@ -29,7 +36,6 @@ export default {
   // ...
   'strapi-identity': {
     enabled: true,
-    resolve: './src/plugins/strapi-identity', // If local
   },
   // ...
 };
