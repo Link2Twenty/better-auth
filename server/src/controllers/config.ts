@@ -7,12 +7,12 @@ type controller = Plugin.LoadedPlugin['controllers'][string];
 const config = ({ strapi }: { strapi: Core.Strapi }): controller => ({
   async isEnabled(ctx) {
     try {
-      const enabled = await strapi.service('plugin::better-auth.config').isEnabled();
+      const enabled = await strapi.service('plugin::strapi-identity.config').isEnabled();
 
       ctx.status = 200;
       ctx.body = { data: enabled, error: null };
     } catch (error) {
-      console.log('Error checking if Better Auth is enabled:', error);
+      console.log('Error checking if Strapi Identity is enabled:', error);
 
       ctx.status = 500;
       ctx.body = { data: null, error: 'Server Error' };
@@ -20,7 +20,7 @@ const config = ({ strapi }: { strapi: Core.Strapi }): controller => ({
   },
   async getConfig(ctx) {
     try {
-      const config = await strapi.service('plugin::better-auth.config').getConfig();
+      const config = await strapi.service('plugin::strapi-identity.config').getConfig();
 
       ctx.status = 200;
       ctx.body = { data: config, error: null };
@@ -35,7 +35,7 @@ const config = ({ strapi }: { strapi: Core.Strapi }): controller => ({
     const body: Partial<{ enabled: boolean; enforce: boolean; issuer: string }> = ctx.request.body;
 
     try {
-      const updatedConfig = await strapi.service('plugin::better-auth.config').updateConfig(body);
+      const updatedConfig = await strapi.service('plugin::strapi-identity.config').updateConfig(body);
 
       ctx.status = 200;
       ctx.body = { data: updatedConfig, error: null };

@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Użyj aplikacji uwierzytelniającej",
   "general.use_recovery_code": "Użyj kodu odzyskiwania",
   "verify_page.title": "Zweryfikuj swoją tożsamość",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej, aby potwierdzić.",
   "profile.disable_title": "Wyłącz uwierzytelnianie dwuskładnikowe",
   "profile.disable_instruction": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej, aby wyłączyć uwierzytelnianie dwuskładnikowe.",
-  "settings.title": "Ustawienia Better Auth",
-  "settings.description": "Ustawienia wtyczki Better Auth, umożliwiające konfigurację opcji uwierzytelniania i ustawień bezpieczeństwa.",
+  "settings.title": "Ustawienia Strapi Identity",
+  "settings.description": "Ustawienia wtyczki Strapi Identity, umożliwiające konfigurację opcji uwierzytelniania i ustawień bezpieczeństwa.",
   "settings.enforced_mfa": "Wymuszone MFA"
 }

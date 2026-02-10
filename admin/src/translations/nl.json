@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Gebruik authenticator-app",
   "general.use_recovery_code": "Gebruik herstelcode",
   "verify_page.title": "Verifieer uw identiteit",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Voer de 6-cijferige code van uw authenticator-app in om te bevestigen.",
   "profile.disable_title": "Tweefactorauthenticatie uitschakelen",
   "profile.disable_instruction": "Voer de 6-cijferige code van uw authenticator-app in om tweefactorauthenticatie uit te schakelen.",
-  "settings.title": "Better Auth Instellingen",
-  "settings.description": "Instellingen voor de Better Auth-plug-in, waarmee u authenticatieopties en beveiligingsinstellingen kunt configureren.",
+  "settings.title": "Strapi Identity Instellingen",
+  "settings.description": "Instellingen voor de Strapi Identity-plug-in, waarmee u authenticatieopties en beveiligingsinstellingen kunt configureren.",
   "settings.enforced_mfa": "Gedwongen MFA"
 }

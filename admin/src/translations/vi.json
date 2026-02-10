@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Sử dụng ứng dụng xác thực",
   "general.use_recovery_code": "Sử dụng mã khôi phục",
   "verify_page.title": "Xác minh danh tính của bạn",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Nhập mã 6 chữ số từ ứng dụng xác thực của bạn để xác nhận.",
   "profile.disable_title": "Tắt xác thực hai yếu tố",
   "profile.disable_instruction": "Nhập mã 6 chữ số từ ứng dụng xác thực của bạn để tắt xác thực hai yếu tố.",
-  "settings.title": "Cài đặt Better Auth",
-  "settings.description": "Cài đặt cho plugin Better Auth, cho phép bạn định cấu hình các tùy chọn xác thực và cài đặt bảo mật.",
+  "settings.title": "Cài đặt Strapi Identity",
+  "settings.description": "Cài đặt cho plugin Strapi Identity, cho phép bạn định cấu hình các tùy chọn xác thực và cài đặt bảo mật.",
   "settings.enforced_mfa": "MFA bắt buộc"
 }

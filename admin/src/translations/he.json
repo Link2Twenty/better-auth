@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "השתמש באפליקציית אימות",
   "general.use_recovery_code": "השתמש בקוד שחזור",
   "verify_page.title": "אמת את זהותך",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "הזן את הקוד בן 6 הספרות מאפליקציית האימות שלך כדי לאשר.",
   "profile.disable_title": "השבת אימות דו-שלבי",
   "profile.disable_instruction": "הזן את הקוד בן 6 הספרות מאפליקציית האימות שלך כדי להשבית את האימות הדו-שלבי.",
-  "settings.title": "הגדרות Better Auth",
-  "settings.description": "הגדרות עבור תוסף Better Auth, המאפשרות להגדיר אפשרויות אימות והגדרות אבטחה.",
+  "settings.title": "הגדרות Strapi Identity",
+  "settings.description": "הגדרות עבור תוסף Strapi Identity, המאפשרות להגדיר אפשרויות אימות והגדרות אבטחה.",
   "settings.enforced_mfa": "MFA שנכפה"
 }

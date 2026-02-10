@@ -38,7 +38,7 @@ const validateToken = (token: string, secret: string): boolean => {
  * @returns {Promise<boolean>} is the recovery code valid
  */
 const checkRecoveryCode = async (userId: string, code: string): Promise<boolean> => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
   const record = await tokenDocument.findFirst({ filters: { admin_user: { id: userId } } });
 
   if (!record || !Array.isArray(record.recovery_codes) || record.recovery_codes.length === 0)
@@ -73,7 +73,7 @@ const checkRecoveryCode = async (userId: string, code: string): Promise<boolean>
  * @returns {Promise<boolean>} is the token valid
  */
 const validateLiveToken = async (userId: string, token: string): Promise<boolean> => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
 
   const record = await tokenDocument.findFirst({ filters: { admin_user: { id: userId } } });
 
@@ -89,7 +89,7 @@ const validateLiveToken = async (userId: string, token: string): Promise<boolean
  * @returns {Promise<boolean>} is the token valid
  */
 export const validateTempToken = async (userId: string, token: string): Promise<boolean> => {
-  const tempDocument = strapi.documents('plugin::better-auth.mfa-temp');
+  const tempDocument = strapi.documents('plugin::strapi-identity.mfa-temp');
 
   const record = await tempDocument.findFirst({ filters: { admin_user: { id: userId } } });
 
@@ -120,8 +120,8 @@ export const validateTokenOrRecoveryCode = async (
  * @return {Promise<Secret>} the generated temporary secret
  */
 export const setupTemporarySecret = async (userId: string): Promise<Secret> => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
-  const tempDocument = strapi.documents('plugin::better-auth.mfa-temp');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
+  const tempDocument = strapi.documents('plugin::strapi-identity.mfa-temp');
   const secret = new Secret({ size: 20 });
 
   const existingToken = await tokenDocument.findFirst({
@@ -152,8 +152,8 @@ export const setupTemporarySecret = async (userId: string): Promise<Secret> => {
  * @returns {Promise<string[]>} the generated recovery codes
  */
 export const setupFullSecret = async (userId: string): Promise<string[]> => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
-  const tempDocument = strapi.documents('plugin::better-auth.mfa-temp');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
+  const tempDocument = strapi.documents('plugin::strapi-identity.mfa-temp');
 
   const tempField = await tempDocument.findFirst({ filters: { admin_user: { id: userId } } });
 
@@ -198,7 +198,7 @@ export const disableSecret = async (userId: string, code: string): Promise<void>
 
   if (!validToken) throw new Error('Invalid token or recovery code');
 
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
 
   const record = await tokenDocument.findFirst({
     filters: { admin_user: { id: userId }, enabled: true },
@@ -217,7 +217,7 @@ export const disableSecret = async (userId: string, code: string): Promise<void>
  * @param userId id of the user to disable the temporary secret for
  */
 export const disableTempSecret = async (userId: string): Promise<void> => {
-  const tempDocument = strapi.documents('plugin::better-auth.mfa-temp');
+  const tempDocument = strapi.documents('plugin::strapi-identity.mfa-temp');
 
   const record = await tempDocument.findFirst({ filters: { admin_user: { id: userId } } });
 
@@ -232,7 +232,7 @@ export const disableTempSecret = async (userId: string): Promise<void> => {
  * @returns {Promise<'full' | null>} is MFA enabled for the user
  */
 export const isMFAEnabled = async (userId: string): Promise<'full' | null> => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
 
   const record = await tokenDocument.findFirst({
     filters: { admin_user: { id: userId }, enabled: true },

@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "प्रमाणीकरण-अनुप्रयोगस्य उपयोगं करोतु",
   "general.use_recovery_code": "पुनर्प्राप्तिसङ्केतस्य उपयोगं करोतु",
   "verify_page.title": "स्वपरिचयः सत्यापयतु",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "पुष्ट्यर्थं स्वस्य प्रमाणीकरण-अनुप्रयोगात् ६-अङ्कीय-सङ्केतं प्रविशतु।",
   "profile.disable_title": "द्वि-कारक प्रमाणीकरणं निष्क्रियं करोतु",
   "profile.disable_instruction": "द्वि-कारक प्रमाणीकरणं निष्क्रियं कर्तुं स्वस्य प्रमाणीकरण-अनुप्रयोगात् ६-अङ्कीय-सङ्केतं प्रविशतु।",
-  "settings.title": "Better Auth विन्यासाः",
-  "settings.description": "Better Auth विन्यासाः, यत् भवन्तं प्रमाणीकरणविकल्पान् सुरक्षाविन्यासान् च रचयितुं शक्نوति.",
+  "settings.title": "Strapi Identity विन्यासाः",
+  "settings.description": "Strapi Identity विन्यासाः, यत् भवन्तं प्रमाणीकरणविकल्पान् सुरक्षाविन्यासान् च रचयितुं शक्نوति.",
   "settings.enforced_mfa": "अनिवार्य MFA"
 }

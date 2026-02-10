@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Gunakan aplikasi autentikator",
   "general.use_recovery_code": "Gunakan kode pemulihan",
   "verify_page.title": "Verifikasi Identitas Anda",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Masukkan kode 6 digit dari aplikasi autentikator Anda untuk mengonfirmasi.",
   "profile.disable_title": "Nonaktifkan Autentikasi Dua Faktor",
   "profile.disable_instruction": "Masukkan kode 6 digit dari aplikasi autentikator Anda untuk menonaktifkan Autentikasi Dua Faktor.",
-  "settings.title": "Pengaturan Better Auth",
-  "settings.description": "Pengaturan untuk plugin Better Auth, memungkinkan Anda mengonfigurasi opsi autentikasi dan pengaturan keamanan.",
+  "settings.title": "Pengaturan Strapi Identity",
+  "settings.description": "Pengaturan untuk plugin Strapi Identity, memungkinkan Anda mengonfigurasi opsi autentikasi dan pengaturan keamanan.",
   "settings.enforced_mfa": "MFA Ditegakkan"
 }

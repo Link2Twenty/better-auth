@@ -33,7 +33,7 @@ export const InjectVerify = async (app: StrapiApp) => {
   while (!_router.router) await new Promise((resolve) => setTimeout(resolve, 10));
 
   _router.router.routes?.[0].children?.unshift({
-    path: 'better-auth/verify',
+    path: 'strapi-identity/verify',
     element: <VerifyPage fallbackIcon={app.configurations?.authLogo || ''} />,
   });
 };
@@ -118,7 +118,7 @@ const VerifyPage = ({ fallbackIcon }: { fallbackIcon: string }) => {
     const code = formData.get('code');
 
     try {
-      const response = await fetch('/better-auth/verify', {
+      const response = await fetch('/strapi-identity/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),

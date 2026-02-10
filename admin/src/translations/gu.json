@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "ઓથેન્ટિકેટર એપ્લિકેશનનો ઉપયોગ કરો",
   "general.use_recovery_code": "પુનઃપ્રાપ્તિ કોડનો ઉપયોગ કરો",
   "verify_page.title": "તમારી ઓળખ ચકાસો",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "પુષ્ટિ કરવા માટે તમારી ઓથેન્ટિકેટર એપ્લિકેશનમાંથી 6-અંકનો કોડ દાખલ કરો.",
   "profile.disable_title": "ટુ-ફેક્ટર ઓથેન્ટિકેશન અક્ષમ કરો",
   "profile.disable_instruction": "ટુ-ફેક્ટર ઓથેન્ટિકેશન અક્ષમ કરવા માટે તમારી ઓથેન્ટિકેટર એપ્લિકેશનમાંથી 6-અંકનો કોડ દાખલ કરો.",
-  "settings.title": "Better Auth સેટિંગ્સ",
-  "settings.description": "Better Auth પ્લગઇન માટે સેટિંગ્સ, જે તમને ઓથેન્ટિકેશન વિકલ્પો અને સુરક્ષા સેટિંગ્સને કન્ફિગર કરવાની મંજૂરી આપે છે.",
+  "settings.title": "Strapi Identity સેટિંગ્સ",
+  "settings.description": "Strapi Identity પ્લગઇન માટે સેટિંગ્સ, જે તમને ઓથેન્ટિકેશન વિકલ્પો અને સુરક્ષા સેટિંગ્સને કન્ફિગર કરવાની મંજૂરી આપે છે.",
   "settings.enforced_mfa": "અમલીકૃત MFA"
 }

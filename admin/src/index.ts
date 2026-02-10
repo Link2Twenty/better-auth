@@ -23,14 +23,14 @@ const plugin: StrapiApp['appPlugins'][string] = {
     app.addSettingsLink('global', {
       intlLabel: {
         id: getTranslation('plugin.name'),
-        defaultMessage: 'Better Auth Settings',
+        defaultMessage: 'Strapi Identity Settings',
       },
-      id: 'better-auth-settings',
+      id: 'strapi-identity-settings',
       to: `/settings/${PLUGIN_ID}`,
       Component: async () => import('./settings/SettingsPage'),
       permissions: [
-        { action: 'plugin::better-auth.settings.read' },
-        { action: 'plugin::better-auth.settings.read' },
+        { action: 'plugin::strapi-identity.settings.read' },
+        { action: 'plugin::strapi-identity.settings.read' },
       ],
     });
 
@@ -96,7 +96,7 @@ const mfaRedirect: () => Middleware<object, ReturnType<Store['getState']>> = () 
       (action.payload || {}).hasOwnProperty('token') &&
       action.payload.token === undefined
     ) {
-      window.location.replace('/admin/better-auth/verify');
+      window.location.replace('/admin/strapi-identity/verify');
       return;
     }
 

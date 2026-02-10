@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Використовувати додаток автентифікації",
   "general.use_recovery_code": "Використовувати код відновлення",
   "verify_page.title": "Підтвердьте свою особу",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Введіть 6-значний код з вашого додатка автентифікації для підтвердження.",
   "profile.disable_title": "Вимкнути двофакторну автентифікацію",
   "profile.disable_instruction": "Введіть 6-значний код з додатка автентифікації, щоб вимкнути двофакторну автентифікацію.",
-  "settings.title": "Налаштування Better Auth",
-  "settings.description": "Налаштування плагіна Better Auth, що дозволяють налаштувати параметри автентифікації та безпеки.",
+  "settings.title": "Налаштування Strapi Identity",
+  "settings.description": "Налаштування плагіна Strapi Identity, що дозволяють налаштувати параметри автентифікації та безпеки.",
   "settings.enforced_mfa": "Примусовий MFA"
 }

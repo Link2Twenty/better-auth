@@ -1,4 +1,4 @@
-# Strapi Plugin Better Auth
+# Strapi Plugin Strapi Identity
 
 Detailed Multi-Factor Authentication (MFA) plugin for Strapi v5+. Secure your Strapi Admin panel with TOTP-based 2FA, fully integrated into the Strapi interface.
 
@@ -7,7 +7,7 @@ Detailed Multi-Factor Authentication (MFA) plugin for Strapi v5+. Secure your St
 - **MFA Login Interception**: Seamlessly integrates with the default Strapi login flow.
 - **TOTP Compatibility**: Works with all major authenticator apps (Google Authenticator, Authy, 1Password, etc.).
 - **Recovery Codes**: Generates secure recovery codes for emergency access.
-- **Native UI Integration**: 
+- **Native UI Integration**:
   - Matches Strapi's design system.
   - Profile integration for easy setup.
   - Dedicated verification page.
@@ -27,20 +27,22 @@ To install this plugin, you'll need to include it in your Strapi project.
 ```typescript
 export default {
   // ...
-  'better-auth': {
+  'strapi-identity': {
     enabled: true,
-    resolve: './src/plugins/better-auth', // If local
+    resolve: './src/plugins/strapi-identity', // If local
   },
   // ...
 };
 ```
 
 3. **Build the admin panel**:
+
 ```bash
 npm run build
 ```
 
 4. **Restart Strapi**:
+
 ```bash
 npm run develop
 ```
@@ -48,26 +50,29 @@ npm run develop
 ## Configuration
 
 Access the global settings via the admin panel:
-**Settings** -> **Global Settings** -> **Better Auth Settings**
+**Settings** -> **Global Settings** -> **Strapi Identify Settings**
 
-| Option | Description |
-|--------|-------------|
-| **Enabled** | Master switch to enable or disable the MFA interception logic globally. |
-| **Enforce** | *(Coming Soon)* Force all users to set up MFA before accessing the dashboard. |
-| **Issuer** | The name that appears in the authenticator app (e.g., "My Project"). Defaults to "Strapi". |
+| Option      | Description                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------ |
+| **Enabled** | Master switch to enable or disable the MFA interception logic globally.                    |
+| **Enforce** | _(Coming Soon)_ Force all users to set up MFA before accessing the dashboard.              |
+| **Issuer**  | The name that appears in the authenticator app (e.g., "My Project"). Defaults to "Strapi". |
 
 ### Permissions
+
 Go to **Settings** -> **Administration Panel** -> **Roles** to configure who can manage these settings:
-- `plugins::better-auth.settings.read`: View configuration.
-- `plugins::better-auth.settings.update`: Modify configuration.
+
+- `plugins::strapi-identity.settings.read`: View configuration.
+- `plugins::strapi-identity.settings.update`: Modify configuration.
 
 ## User Guide
 
 ### Setting up MFA (User)
+
 1. Log in to the Strapi Admin panel.
 2. Click on your **User Profile** avatar in the top-right corner.
 3. Click **Profile**.
-4. In the "Better Auth" section, toggle the switch to **Enable MFA**.
+4. In the "Two-Factor Authentication" section, toggle the switch to **Enable Two-Factor Authentication**.
 5. A modal will appear:
    - **Scan the QR Code** with your authenticator app.
    - Enter the **6-digit code** displayed in your app.
@@ -75,6 +80,7 @@ Go to **Settings** -> **Administration Panel** -> **Roles** to configure who can
 6. Click **Finish**.
 
 ### Signing In
+
 1. Enter your Email and Password on the standard Strapi login page.
 2. If credentials are correct and MFA is enabled, you will be redirected to the Verification Page.
 3. Enter the code from your authenticator app.

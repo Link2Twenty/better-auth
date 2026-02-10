@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "प्रमाणक ऐप का उपयोग करें",
   "general.use_recovery_code": "पुनर्प्राप्ति कोड का उपयोग करें",
   "verify_page.title": "अपनी पहचान सत्यापित करें",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "पुष्टि करने के लिए अपने प्रमाणक ऐप से 6 अंकों का कोड दर्ज करें।",
   "profile.disable_title": "दो-कारक प्रमाणीकरण अक्षम करें",
   "profile.disable_instruction": "दो-कारक प्रमाणीकरण को अक्षम करने के लिए अपने प्रमाणक ऐप से 6 अंकों का कोड दर्ज करें।",
-  "settings.title": "Better Auth सेटिंग्स",
-  "settings.description": "Better Auth प्लगइन के लिए सेटिंग्स, जो आपको प्रमाणीकरण विकल्प और सुरक्षा सेटिंग्स कॉन्फ़िगर करने की अनुमति देता है।",
+  "settings.title": "Strapi Identity सेटिंग्स",
+  "settings.description": "Strapi Identity प्लगइन के लिए सेटिंग्स, जो आपको प्रमाणीकरण विकल्प और सुरक्षा सेटिंग्स कॉन्फ़िगर करने की अनुमति देता है।",
   "settings.enforced_mfa": "लागू किया गया MFA"
 }

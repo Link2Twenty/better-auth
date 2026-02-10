@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "ഓതന്റിക്കേറ്റർ ആപ്പ് ഉപയോഗിക്കുക",
   "general.use_recovery_code": "റിക്കവറി കോഡ് ഉപയോഗിക്കുക",
   "verify_page.title": "നിങ്ങളുടെ തിരിച്ചറിയൽ ഉറപ്പാക്കുക",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "സ്ഥിരീകരിക്കുന്നതിനായി നിങ്ങളുടെ ഓതന്റിക്കേറ്റർ ആപ്പിൽ നിന്നുള്ള 6-അക്ക കോഡ് നൽകുക.",
   "profile.disable_title": "ടു-ഫാക്ടർ ഓതന്റിക്കേഷൻ പ്രവർത്തനരഹിതമാക്കുക",
   "profile.disable_instruction": "ടു-ഫാക്ടർ ഓതന്റിക്കേഷൻ പ്രവർത്തനരഹിതമാക്കാൻ നിങ്ങളുടെ ഓതന്റിക്കേറ്റർ ആപ്പിൽ നിന്നുള്ള 6-അക്ക കോഡ് നൽകുക.",
-  "settings.title": "Better Auth ക്രമീകരണങ്ങൾ",
-  "settings.description": "ഓതന്റിക്കേഷൻ ഓപ്ഷനുകളും സുരക്ഷാ ക്രമീകരണങ്ങളും ക്രമീകരിക്കാൻ അനുവദിക്കുന്ന Better Auth പ്ലഗിനിനായുള്ള ക്രമീകരണങ്ങൾ.",
+  "settings.title": "Strapi Identity ക്രമീകരണങ്ങൾ",
+  "settings.description": "ഓതന്റിക്കേഷൻ ഓപ്ഷനുകളും സുരക്ഷാ ക്രമീകരണങ്ങളും ക്രമീകരിക്കാൻ അനുവദിക്കുന്ന Strapi Identity പ്ലഗിനിനായുള്ള ക്രമീകരണങ്ങൾ.",
   "settings.enforced_mfa": "നിർബന്ധിത MFA"
 }

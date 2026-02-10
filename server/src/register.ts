@@ -26,11 +26,11 @@ const register: Plugin.LoadedPlugin['register'] = ({ strapi }) => {
     // If they have the MFA cookie and try to hit the root admin or dashboard
     if (mfaCookie && ctx.path.startsWith('/admin/auth')) {
       ctx.cookies.set('jwtToken', null, { expires: new Date(0) });
-      ctx.redirect('/admin/better-auth/verify');
+      ctx.redirect('/admin/strapi-identity/verify');
       return;
     }
 
-    if (!mfaCookie && ctx.path === '/admin/better-auth/verify') {
+    if (!mfaCookie && ctx.path === '/admin/strapi-identity/verify') {
       ctx.redirect('/admin');
       return;
     }
@@ -60,7 +60,7 @@ const replaceLogin = (route: Core.Route, secret: string, cookieOptions: Record<s
 
     // If we're not enabling MFA, do nothing
     const config: { enabled: boolean; enforce: boolean; issuer: string } = await strapi
-      .service('plugin::better-auth.config')
+      .service('plugin::strapi-identity.config')
       .getConfig();
 
     if (!config.enabled) return;
@@ -69,7 +69,7 @@ const replaceLogin = (route: Core.Route, secret: string, cookieOptions: Record<s
     const payload = jwt.verify(token, secret) as { userId: string };
 
     // check if userId has MFA enabled
-    const exists = await strapi.documents('plugin::better-auth.mfa-token').findFirst({
+    const exists = await strapi.documents('plugin::strapi-identity.mfa-token').findFirst({
       filters: { admin_user: { id: payload.userId }, enabled: true },
     });
 

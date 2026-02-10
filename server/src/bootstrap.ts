@@ -1,7 +1,7 @@
 import type { Plugin } from '@strapi/types';
 
 const bootstrap: Plugin.LoadedPlugin['bootstrap'] = async () => {
-  const config = strapi.documents('plugin::better-auth.better-auth-config');
+  const config = strapi.documents('plugin::strapi-identity.strapi-identity-config');
   const existingConfig = await config.count({});
 
   // If no configuration exists, create a default one
@@ -16,14 +16,14 @@ const bootstrap: Plugin.LoadedPlugin['bootstrap'] = async () => {
       section: 'plugins',
       displayName: 'Read',
       subCategory: 'settings',
-      pluginName: 'better-auth',
+      pluginName: 'strapi-identity',
     },
     {
       uid: 'settings.update',
       section: 'plugins',
       displayName: 'Update',
       subCategory: 'settings',
-      pluginName: 'better-auth',
+      pluginName: 'strapi-identity',
     },
   ]);
 };

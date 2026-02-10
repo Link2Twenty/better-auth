@@ -1,1 +1,1 @@
-export const PLUGIN_ID = 'better-auth';
+export const PLUGIN_ID = 'strapi-identity';

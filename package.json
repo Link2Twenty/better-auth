@@ -63,20 +63,20 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "better-auth",
-    "displayName": "Strapi Better Auth",
+    "name": "strapi-identity",
+    "displayName": "Strapi Identity",
     "description": "Strapi plugin to add missing features to the strapi auth system"
   },
-  "name": "better-auth",
+  "name": "strapi-identity",
   "description": "Strapi plugin to add missing features to the strapi auth system",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Link2Twenty/better-auth.git"
+    "url": "git+ssh://git@github.com/Link2Twenty/strapi-identity.git"
   },
   "bugs": {
-    "url": "https://github.com/Link2Twenty/better-auth/issues"
+    "url": "https://github.com/Link2Twenty/strapi-identity/issues"
   },
-  "homepage": "https://github.com/Link2Twenty/better-auth#readme",
+  "homepage": "https://github.com/Link2Twenty/strapi-identity#readme",
   "author": "Andrew Bone <AndrewB05+strapi@gmail.com>"
 }

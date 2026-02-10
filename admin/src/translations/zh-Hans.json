@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "使用验证器应用",
   "general.use_recovery_code": "使用恢复代码",
   "verify_page.title": "验证您的身份",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "输入验证器应用中的6位代码以确认。",
   "profile.disable_title": "禁用双因素认证",
   "profile.disable_instruction": "请输入验证器应用中的6位代码以禁用双因素认证。",
-  "settings.title": "Better Auth 设置",
-  "settings.description": "Better Auth 插件设置，允许您配置身份验证选项和安全设置。",
+  "settings.title": "Strapi Identity 设置",
+  "settings.description": "Strapi Identity 插件设置，允许您配置身份验证选项和安全设置。",
   "settings.enforced_mfa": "强制 MFA"
 }

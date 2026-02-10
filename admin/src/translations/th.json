@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "ใช้แอปยืนยันตัวตน",
   "general.use_recovery_code": "ใช้รหัสกู้คืน",
   "verify_page.title": "ยืนยันตัวตนของคุณ",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "ป้อนรหัส 6 หลักจากแอปยืนยันตัวตนเพื่อยืนยัน",
   "profile.disable_title": "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย",
   "profile.disable_instruction": "ป้อนรหัส 6 หลักจากแอปยืนยันตัวตนเพื่อปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย",
-  "settings.title": "การตั้งค่า Better Auth",
-  "settings.description": "การตั้งค่าสำหรับปลั๊กอิน Better Auth ช่วยให้คุณกำหนดค่าตัวเลือกการตรวจสอบสิทธิ์และการตั้งค่าความปลอดภัย",
+  "settings.title": "การตั้งค่า Strapi Identity",
+  "settings.description": "การตั้งค่าสำหรับปลั๊กอิน Strapi Identity ช่วยให้คุณกำหนดค่าตัวเลือกการตรวจสอบสิทธิ์และการตั้งค่าความปลอดภัย",
   "settings.enforced_mfa": "บังคับใช้ MFA"
 }

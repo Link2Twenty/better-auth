@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "認証アプリを使用",
   "general.use_recovery_code": "リカバリーコードを使用",
   "verify_page.title": "本人確認",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "確認するには、認証アプリから6桁のコードを入力してください。",
   "profile.disable_title": "二要素認証を無効にする",
   "profile.disable_instruction": "二要素認証を無効にするには、認証アプリから6桁のコードを入力してください。",
-  "settings.title": "Better Auth設定",
-  "settings.description": "Better Authプラグインの設定。認証オプションとセキュリティ設定を構成できます。",
+  "settings.title": "Strapi Identity設定",
+  "settings.description": "Strapi Identityプラグインの設定。認証オプションとセキュリティ設定を構成できます。",
   "settings.enforced_mfa": "強制MFA"
 }

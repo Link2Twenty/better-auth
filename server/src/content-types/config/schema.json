@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "better-auth-config",
+  "collectionName": "strapi-identity-config",
   "info": {
-    "singularName": "better-auth-config",
-    "pluralName": "better-auth-configs",
-    "displayName": "Better Auth Config"
+    "singularName": "strapi-identity-config",
+    "pluralName": "strapi-identity-configs",
+    "displayName": "Strapi Identity Config"
   },
   "options": {
     "draftAndPublish": false

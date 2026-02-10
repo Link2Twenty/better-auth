@@ -117,7 +117,7 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
 
     try {
       const valid = await strapi
-        .service('plugin::better-auth.secret')
+        .service('plugin::strapi-identity.secret')
         .validateTokenOrRecoveryCode(payload.userId, body.code);
 
       if (!valid) {
@@ -176,8 +176,8 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
     const user = ctx.state.user;
 
     const body: { enable: boolean } = ctx.request.body;
-    const secretService = strapi.service('plugin::better-auth.secret');
-    const configService = strapi.service('plugin::better-auth.config');
+    const secretService = strapi.service('plugin::strapi-identity.secret');
+    const configService = strapi.service('plugin::strapi-identity.config');
 
     try {
       if (body.enable) {
@@ -205,7 +205,7 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
     const user = ctx.state.user;
 
     const body: { code: string } = ctx.request.body;
-    const secretService = strapi.service('plugin::better-auth.secret');
+    const secretService = strapi.service('plugin::strapi-identity.secret');
 
     try {
       const isValid = await secretService.validateTempToken(user.id, body.code);
@@ -227,7 +227,7 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
   },
   async checkStatus(ctx) {
     const user = ctx.state.user;
-    const secretService = strapi.service('plugin::better-auth.secret');
+    const secretService = strapi.service('plugin::strapi-identity.secret');
 
     try {
       const isEnabled = await secretService.isMFAEnabled(user.id);
@@ -242,7 +242,7 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
   async disable(ctx) {
     const user = ctx.state.user;
     const body: { code: string } = ctx.request.body;
-    const secretService = strapi.service('plugin::better-auth.secret');
+    const secretService = strapi.service('plugin::strapi-identity.secret');
 
     try {
       await secretService.disableSecret(user.id, body.code);

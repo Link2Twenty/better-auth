@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "استخدام تطبيق المصادقة",
   "general.use_recovery_code": "استخدام رمز الاسترداد",
   "verify_page.title": "تحقق من هويتك",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة للتأكيد.",
   "profile.disable_title": "تعطيل المصادقة الثنائية",
   "profile.disable_instruction": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة لتعطيل المصادقة الثنائية.",
-  "settings.title": "إعدادات Better Auth",
-  "settings.description": "إعدادات المكون الإضافي Better Auth، مما يسمح لك بتكوين خيارات المصادقة وإعدادات الأمان.",
+  "settings.title": "إعدادات Strapi Identity",
+  "settings.description": "إعدادات المكون الإضافي Strapi Identity، مما يسمح لك بتكوين خيارات المصادقة وإعدادات الأمان.",
   "settings.enforced_mfa": "MFA المفروضة"
 }

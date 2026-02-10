@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Brug godkendelsesapp",
   "general.use_recovery_code": "Brug gendannelseskode",
   "verify_page.title": "Bekræft din identitet",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Indtast den 6-cifrede kode fra din autentificeringsapp for at bekræfte.",
   "profile.disable_title": "Deaktiver tofaktorautentificering",
   "profile.disable_instruction": "Indtast den 6-cifrede kode fra din godkendelsesapp for at deaktivere tofaktorautentificering.",
-  "settings.title": "Better Auth Indstillinger",
-  "settings.description": "Indstillinger for Better Auth-pluginet, der giver dig mulighed for at konfigurere godkendelsesmuligheder og sikkerhedsindstillinger.",
+  "settings.title": "Strapi Identity Indstillinger",
+  "settings.description": "Indstillinger for Strapi Identity-pluginet, der giver dig mulighed for at konfigurere godkendelsesmuligheder og sikkerhedsindstillinger.",
   "settings.enforced_mfa": "Tvungen MFA"
 }

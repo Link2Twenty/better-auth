@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Použít ověřovací aplikaci",
   "general.use_recovery_code": "Použít kód pro obnovení",
   "verify_page.title": "Ověřte svou totožnost",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Pro potvrzení zadejte 6místný kód z vaší ověřovací aplikace.",
   "profile.disable_title": "Zakázat dvoufaktorové ověřování",
   "profile.disable_instruction": "Zadejte 6místný kód z vaší ověřovací aplikace pro zakázání dvoufaktorového ověřování.",
-  "settings.title": "Nastavení Better Auth",
-  "settings.description": "Nastavení pluginu Better Auth umožňující konfigurovat možnosti ověřování a nastavení zabezpečení.",
+  "settings.title": "Nastavení Strapi Identity",
+  "settings.description": "Nastavení pluginu Strapi Identity umožňující konfigurovat možnosti ověřování a nastavení zabezpečení.",
   "settings.enforced_mfa": "Vynucené MFA"
 }

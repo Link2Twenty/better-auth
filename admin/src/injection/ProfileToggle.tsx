@@ -42,7 +42,7 @@ const ProfileToggle = () => {
     }
 
     try {
-      const response = await fetch('/better-auth/enable', {
+      const response = await fetch('/strapi-identity/enable', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
         body: JSON.stringify({ enable }),
@@ -85,7 +85,7 @@ const ProfileToggle = () => {
     const token = getToken();
 
     try {
-      const response = await fetch('/better-auth/setup', {
+      const response = await fetch('/strapi-identity/setup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
         body: JSON.stringify({ code }),
@@ -133,7 +133,7 @@ const ProfileToggle = () => {
     const token = getToken();
 
     try {
-      const response = await fetch('/better-auth/disable', {
+      const response = await fetch('/strapi-identity/disable', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
         body: JSON.stringify({ code }),
@@ -163,12 +163,12 @@ const ProfileToggle = () => {
 
       try {
         const [status, enabled] = await Promise.all([
-          fetch('/better-auth/status', {
+          fetch('/strapi-identity/status', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
             signal: ac.signal,
           }),
-          fetch('/better-auth/config/enabled', {
+          fetch('/strapi-identity/config/enabled', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
             signal: ac.signal,

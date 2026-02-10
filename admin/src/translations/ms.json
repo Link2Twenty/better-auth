@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Gunakan aplikasi pengesah",
   "general.use_recovery_code": "Gunakan kod pemulihan",
   "verify_page.title": "Sahkan Identiti Anda",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Masukkan kod 6 digit daripada aplikasi pengesah anda untuk mengesahkan.",
   "profile.disable_title": "Lumpuhkan Pengesahan Dua Faktor",
   "profile.disable_instruction": "Masukkan kod 6 digit daripada aplikasi pengesah anda untuk melumpuhkan Pengesahan Dua Faktor.",
-  "settings.title": "Tetapan Better Auth",
-  "settings.description": "Tetapan untuk pemalam Better Auth, membolehkan anda mengkonfigurasi pilihan pengesahan dan tetapan keselamatan.",
+  "settings.title": "Tetapan Strapi Identity",
+  "settings.description": "Tetapan untuk pemalam Strapi Identity, membolehkan anda mengkonfigurasi pilihan pengesahan dan tetapan keselamatan.",
   "settings.enforced_mfa": "MFA Dipaksa"
 }

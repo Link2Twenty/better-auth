@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Hitelesítő alkalmazás használata",
   "general.use_recovery_code": "Helyreállítási kód használata",
   "verify_page.title": "Igazolja személyazonosságát",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "A megerősítéshez adja meg a hitelesítő alkalmazás 6 jegyű kódját.",
   "profile.disable_title": "Kétfaktoros hitelesítés letiltása",
   "profile.disable_instruction": "Adja meg a 6 jegyű kódot a hitelesítő alkalmazásból a kétfaktoros hitelesítés letiltásához.",
-  "settings.title": "Better Auth Beállítások",
-  "settings.description": "A Better Auth bővízmény beállításai, amelyek lehetővé teszik a hitelesítési beállítások és a biztonsági beállítások konfigurálását.",
+  "settings.title": "Strapi Identity Beállítások",
+  "settings.description": "A Strapi Identity bővízmény beállításai, amelyek lehetővé teszik a hitelesítési beállítások és a biztonsági beállítások konfigurálását.",
   "settings.enforced_mfa": "Kényszerített MFA"
 }

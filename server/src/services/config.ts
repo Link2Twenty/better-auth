@@ -12,7 +12,7 @@ const _config = (options: Record<string, unknown> | null) => {
 };
 
 /**
- * Service for managing the Better Auth plugin configuration
+ * Service for managing the Strapi Identity plugin configuration
  * @returns an object containing functions to get and update the plugin configuration
  */
 export const isEnabled = async () => {
@@ -22,11 +22,11 @@ export const isEnabled = async () => {
 };
 
 /**
- * Retrieves the current configuration for the Better Auth plugin
+ * Retrieves the current configuration for the Strapi Identity plugin
  * @returns the current configuration
  */
 export const getConfig = async () => {
-  const configDocument = strapi.documents('plugin::better-auth.better-auth-config');
+  const configDocument = strapi.documents('plugin::strapi-identity.strapi-identity-config');
 
   return configDocument
     .findFirst({ fields: ['enabled', 'enforce', 'issuer'] })
@@ -34,14 +34,14 @@ export const getConfig = async () => {
 };
 
 /**
- * Updates the Better Auth plugin configuration with the provided data
+ * Updates the Strapi Identity plugin configuration with the provided data
  * @param data partial configuration data to update
  * @returns  the updated configuration
  */
 export const updateConfig = async (
   data: Partial<{ enabled: boolean; enforce: boolean; issuer: string }>
 ) => {
-  const configDocument = strapi.documents('plugin::better-auth.better-auth-config');
+  const configDocument = strapi.documents('plugin::strapi-identity.strapi-identity-config');
 
   const existingConfig = await configDocument.findFirst();
 
@@ -69,8 +69,8 @@ export const updateConfig = async (
  * This is used when the admin turns off MFA in the settings, ensuring that all users are affected by this change
  */
 const disableMFAForAllUsers = async () => {
-  const tokenDocument = strapi.documents('plugin::better-auth.mfa-token');
-  const tempDocument = strapi.documents('plugin::better-auth.mfa-temp');
+  const tokenDocument = strapi.documents('plugin::strapi-identity.mfa-token');
+  const tempDocument = strapi.documents('plugin::strapi-identity.mfa-temp');
 
   try {
     // Fetch all existing tokens and temporary secrets

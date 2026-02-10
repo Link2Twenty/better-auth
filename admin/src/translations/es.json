@@ -1,5 +1,5 @@
 {
-  "plugin.name": "Better Auth",
+  "plugin.name": "Strapi Identity",
   "general.use_verification_code": "Usar aplicación de autenticación",
   "general.use_recovery_code": "Usar código de recuperación",
   "verify_page.title": "Verifique su identidad",
@@ -16,7 +16,7 @@
   "profile.enter_otp": "Introduzca el código de 6 dígitos de su aplicación de autenticación para confirmar.",
   "profile.disable_title": "Desactivar autenticación de dos factores",
   "profile.disable_instruction": "Introduzca el código de 6 dígitos de su aplicación de autenticación para desactivar la autenticación de dos factores.",
-  "settings.title": "Configuración de Better Auth",
-  "settings.description": "Configuración del plugin Better Auth, que le permite configurar opciones de autenticación y ajustes de seguridad.",
+  "settings.title": "Configuración de Strapi Identity",
+  "settings.description": "Configuración del plugin Strapi Identity, que le permite configurar opciones de autenticación y ajustes de seguridad.",
   "settings.enforced_mfa": "MFA forzado"
 }

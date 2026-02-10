@@ -79,7 +79,7 @@ export default function SettingsPage() {
     try {
       const token = getToken();
 
-      const response = await fetch('/better-auth/config', {
+      const response = await fetch('/strapi-identity/config', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export default function SettingsPage() {
 
     (async () => {
       try {
-        const response = await fetch('/better-auth/config', {
+        const response = await fetch('/strapi-identity/config', {
           headers: { Authorization: `Bearer ${token}` },
           signal: ac.signal,
         });
@@ -171,7 +171,7 @@ export default function SettingsPage() {
       <Page.Title>
         {formatMessage(
           { id: 'Settings.PageTitle', defaultMessage: 'Settings - {name}' },
-          { name: 'Better Auth' }
+          { name: 'Strapi Identity' }
         )}
       </Page.Title>
       <Page.Main>
@@ -179,12 +179,12 @@ export default function SettingsPage() {
           <Layouts.Header
             title={formatMessage({
               id: getTranslation('settings.name'),
-              defaultMessage: 'Better Auth',
+              defaultMessage: 'Strapi Identity',
             })}
             subtitle={formatMessage({
               id: getTranslation('settings.description'),
               defaultMessage:
-                'Settings for Better Auth plugin, allowing you to configure authentication options and security settings.',
+                'Settings for Strapi Identity plugin, allowing you to configure authentication options and security settings.',
             })}
             primaryAction={
               <Button disabled={!canSave} loading={isSaving} type="submit" startIcon={<Check />}>
