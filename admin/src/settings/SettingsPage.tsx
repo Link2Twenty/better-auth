@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 // Components
-import { Layouts, Page } from '@strapi/strapi/admin';
-import { Button, Field, Flex, Grid, TextInput, Toggle } from '@strapi/design-system';
+import { Layouts, Page, useNotification } from '@strapi/strapi/admin';
+import { Button, Field, Flex, Grid, TextInput, Toggle, Typography } from '@strapi/design-system';
 import { Check } from '@strapi/icons';
 
 // Helpers
@@ -16,14 +16,38 @@ import { useIntl } from 'react-intl';
 // Types
 type config = { enabled: boolean; enforce: boolean; issuer: string };
 
+// Constants
+const defaultConfig: config = { enabled: false, enforce: false, issuer: '' };
+
+/**
+ * Utility function to extract config values from form data
+ * @param formData the form data to extract values from
+ * @returns a config object with the extracted values
+ */
+const getConfigFromForm = (formData: FormData) => {
+  return Array.from(formData.entries()).reduce<config>(
+    (acc, [key, value]) => {
+      if (key === 'enabled' || key === 'enforce') acc[key] = value === 'on';
+      else if (key === 'issuer') acc[key] = String(value);
+
+      return acc;
+    },
+    Object.assign({}, defaultConfig)
+  );
+};
+
 export default function SettingsPage() {
   const { formatMessage } = useIntl();
+  const { toggleNotification } = useNotification();
 
   const [canSave, setCanSave] = useState(false);
   const [isSaving, setSaving] = useState(false);
 
   const [isLoading, setLoading] = useState(true);
   const [initialConfig, setInitialConfig] = useState<config | null>(null);
+
+  const [enabled, setEnabled] = useState(false);
+  const [enforce, setEnforce] = useState(false);
 
   /**
    * Handle form submission to save the settings
@@ -35,16 +59,7 @@ export default function SettingsPage() {
     setSaving(true);
 
     const formData = new FormData(event.currentTarget);
-
-    const values = Array.from(formData.entries()).reduce<Partial<config>>(
-      (acc, [key, value]) => {
-        if (key === 'enabled' || key === 'enforce') acc[key] = value === 'on';
-        else if (key === 'issuer') acc[key] = String(value);
-
-        return acc;
-      },
-      Object.assign({}, initialConfig)
-    );
+    const values = getConfigFromForm(formData);
 
     try {
       const token = getToken();
@@ -67,9 +82,20 @@ export default function SettingsPage() {
 
       setInitialConfig(data);
       setCanSave(false);
-      setSaving(false);
+
+      toggleNotification({
+        type: 'success',
+        message: formatMessage({ id: 'notification.success.saved', defaultMessage: 'Saved' }),
+      });
     } catch (error) {
       console.error('Error updating config:', error);
+
+      toggleNotification({
+        type: 'danger',
+        message: formatMessage({ id: 'notification.error', defaultMessage: 'An error occured' }),
+      });
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -78,18 +104,8 @@ export default function SettingsPage() {
    * @param event the form change event
    */
   const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
-    //console log the current form values for debugging
     const formData = new FormData(event.currentTarget);
-
-    const values = Array.from(formData.entries()).reduce<Partial<config>>(
-      (acc, [key, value]) => {
-        if (key === 'enabled' || key === 'enforce') acc[key] = value === 'on';
-        else if (key === 'issuer') acc[key] = String(value);
-
-        return acc;
-      },
-      Object.assign({}, initialConfig)
-    );
+    const values = getConfigFromForm(formData);
 
     setCanSave(!isEqual(values, initialConfig || {}));
   };
@@ -113,9 +129,19 @@ export default function SettingsPage() {
         const { data, error } = json;
         if (error) throw new Error(error);
 
-        setLoading(false);
         setInitialConfig(data);
-      } catch (error) {}
+        setEnabled(data.enabled);
+        setEnforce(data.enforce);
+      } catch (error) {
+        console.error('Error fetching config:', error);
+
+        toggleNotification({
+          type: 'danger',
+          message: formatMessage({ id: 'notification.error', defaultMessage: 'An error occured' }),
+        });
+      } finally {
+        setLoading(false);
+      }
     })();
 
     return () => ac.abort();
@@ -165,6 +191,14 @@ export default function SettingsPage() {
                 paddingRight={7}
                 paddingLeft={7}
               >
+                <Flex direction="column" alignItems="stretch" gap={1}>
+                  <Typography variant="delta" tag="h2">
+                    {formatMessage({
+                      id: getTranslation('profile.title'),
+                      defaultMessage: 'Two-Factor Authentication',
+                    })}
+                  </Typography>
+                </Flex>
                 <Grid.Root gap={5} tag="dl">
                   <Grid.Item col={6} xs={12} direction="column" alignItems="stretch">
                     <Field.Root
@@ -179,7 +213,8 @@ export default function SettingsPage() {
                       </Field.Label>
                       <Toggle
                         name="enabled"
-                        defaultChecked={initialConfig?.enabled}
+                        checked={enabled}
+                        onChange={({ target }) => setEnabled(target.checked)}
                         offLabel={formatMessage({
                           id: 'app.components.ToggleCheckbox.off-label',
                           defaultMessage: 'False',
@@ -209,7 +244,9 @@ export default function SettingsPage() {
                       </Field.Label>
                       <Toggle
                         name="enforce"
-                        defaultChecked={initialConfig?.enforce}
+                        disabled
+                        checked={enforce}
+                        onChange={({ target }) => setEnforce(target.checked)}
                         offLabel={formatMessage({
                           id: 'app.components.ToggleCheckbox.off-label',
                           defaultMessage: 'False',
