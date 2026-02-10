@@ -1,6 +1,9 @@
+import styled from 'styled-components';
+
+// Components
 import { Button, Flex, Grid, Modal, Typography } from '@strapi/design-system';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '../InputOTP';
-import QRCode from 'react-qr-code';
+import { QRCodeCanvas } from 'qrcode.react';
 
 // Helpers
 import { getTranslation } from '../../utils/getTranslation';
@@ -66,7 +69,7 @@ export default function ConfirmModal({
                 </Typography>
               </Flex>
             ) : (
-              <>
+              <Flex direction="column">
                 <Flex direction="column" alignItems="center" gap={4} marginTop={4} marginBottom={4}>
                   <Typography>
                     {formatMessage({
@@ -75,16 +78,10 @@ export default function ConfirmModal({
                         'You will need an authenticator app to scan the QR code below.',
                     })}
                   </Typography>
-                  <QRCode value={qrCodeUri || ''} />
+                  {qrCodeUri && <QRCodeCanvas value={qrCodeUri} size={256} />}
                   {secret && <Typography variant="pi">{secret || ''}</Typography>}
                 </Flex>
-                <hr
-                  style={{
-                    height: '1px',
-                    border: '0',
-                    backgroundColor: '#e5e5e5',
-                  }}
-                />
+                <Rule />
                 <Flex direction="column" alignItems="center" gap={4} marginTop={4} marginBottom={4}>
                   <Typography>
                     {formatMessage({
@@ -107,7 +104,7 @@ export default function ConfirmModal({
                     </InputOTPGroup>
                   </InputOTP>
                 </Flex>
-              </>
+              </Flex>
             )}
           </Modal.Body>
           <Modal.Footer>
@@ -130,3 +127,9 @@ export default function ConfirmModal({
     </Modal.Root>
   );
 }
+
+const Rule = styled.hr`
+  height: 1px;
+  border: 0;
+  background-color: #e5e5e5;
+`;
