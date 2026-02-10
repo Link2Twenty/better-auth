@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // Compoenents
-import { Box, Field, Flex } from '@strapi/design-system';
-import { Toggle, Typography } from '@strapi/design-system';
+import { Box, Field, Flex, Grid, Toggle, Typography } from '@strapi/design-system';
 import ConfirmModal from '../components/ConfirmModal';
 import RemoveModal from '../components/RemoveModal';
 
@@ -17,6 +16,7 @@ const ProfileToggle = () => {
   const { formatMessage } = useIntl();
 
   const [enabled, setEnabled] = useState<'full' | 'temp' | null>(null);
+  const [mfaEnabled, setMfaEnabled] = useState<boolean>(false);
 
   const [disableDialogOpen, setDisableDialogOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -162,19 +162,32 @@ const ProfileToggle = () => {
       const token = getToken();
 
       try {
-        const response = await fetch('/better-auth/status', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-          signal: ac.signal,
-        });
+        const [status, enabled] = await Promise.all([
+          fetch('/better-auth/status', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
+            signal: ac.signal,
+          }),
+          fetch('/better-auth/config/enabled', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
+            signal: ac.signal,
+          }),
+        ]);
 
-        const body = await response.json();
+        const statusBody = await status.json();
+        const enabledBody = await enabled.json();
 
-        if (!response.ok) {
-          throw new Error(`${response.status} - ${body.error || 'Failed to set up MFA'}`);
+        if (!status.ok) {
+          throw new Error(`${status.status} - ${statusBody.error || 'Failed to set up MFA'}`);
         }
 
-        setEnabled(body.data?.status || null);
+        if (!enabled.ok) {
+          throw new Error(`${enabled.status} - ${enabledBody.error || 'Failed to get MFA config'}`);
+        }
+
+        setMfaEnabled(enabledBody.data);
+        setEnabled(statusBody.data?.status || null);
       } catch (error) {
         if ((error as Error).name === 'AbortError') return;
 
@@ -184,6 +197,8 @@ const ProfileToggle = () => {
 
     return () => ac.abort();
   }, []);
+
+  if (!mfaEnabled) return null;
 
   return (
     <>
@@ -211,29 +226,35 @@ const ProfileToggle = () => {
               })}
             </Typography>
           </Flex>
-          <Flex direction="row" alignItems="stretch" gap={6}>
-            <Field.Root name="two-factor-authentication" id="two-factor-authentication">
-              <Field.Label>
-                {formatMessage({
-                  id: getTranslation('profile.toggle_label'),
-                  defaultMessage: 'Enable Two-Factor Authentication',
-                })}
-              </Field.Label>
-              <Toggle
-                offLabel={formatMessage({
-                  id: 'app.components.ToggleCheckbox.off-label',
-                  defaultMessage: 'False',
-                })}
-                onLabel={formatMessage({
-                  id: 'app.components.ToggleCheckbox.on-label',
-                  defaultMessage: 'True',
-                })}
-                checked={enabled !== null}
-                onChange={handleToggle}
-              />
-              <Field.Hint />
-            </Field.Root>
-          </Flex>
+          <Grid.Root tag="div" gap={5}>
+            <Grid.Item col={6} s={12} alignItems="stretch">
+              <Field.Root
+                width="100%"
+                name="two-factor-authentication"
+                id="two-factor-authentication"
+              >
+                <Field.Label>
+                  {formatMessage({
+                    id: getTranslation('profile.toggle_label'),
+                    defaultMessage: 'Enable Two-Factor Authentication',
+                  })}
+                </Field.Label>
+                <Toggle
+                  offLabel={formatMessage({
+                    id: 'app.components.ToggleCheckbox.off-label',
+                    defaultMessage: 'False',
+                  })}
+                  onLabel={formatMessage({
+                    id: 'app.components.ToggleCheckbox.on-label',
+                    defaultMessage: 'True',
+                  })}
+                  checked={enabled !== null}
+                  onChange={handleToggle}
+                />
+                <Field.Hint />
+              </Field.Root>
+            </Grid.Item>
+          </Grid.Root>
         </Flex>
       </Box>
 
