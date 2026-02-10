@@ -18,5 +18,6 @@
   "profile.disable_instruction": "Enter the 6-digit code from your authenticator app to disable Two-Factor Authentication.",
   "settings.title": "Better Auth Settings",
   "settings.description": "Settings for Better Auth plugin, allowing you to configure authentication options and security settings.",
-  "settings.enforced_mfa": "Enforced MFA"
+  "settings.enforced_mfa": "Enforced MFA",
+  "settings.warning": "Turning MFA off will affect all users. Please review the settings carefully before saving."
 }

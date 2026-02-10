@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Components
+import WarningAlert from '../components/WarningAlert';
 import { Layouts, Page, useNotification } from '@strapi/strapi/admin';
 import { Button, Field, Flex, Grid, TextInput, Toggle, Typography } from '@strapi/design-system';
 import { Check } from '@strapi/icons';
@@ -12,7 +13,6 @@ import { getToken } from '../utils/tokenHelpers';
 
 // Hooks
 import { useIntl } from 'react-intl';
-
 // Types
 type config = { enabled: boolean; enforce: boolean; issuer: string };
 
@@ -37,8 +37,12 @@ const getConfigFromForm = (formData: FormData) => {
 };
 
 export default function SettingsPage() {
+  const formRef = useRef<HTMLFormElement>(null);
+
   const { formatMessage } = useIntl();
   const { toggleNotification } = useNotification();
+
+  const [showWarning, setShowWarning] = useState(false);
 
   const [canSave, setCanSave] = useState(false);
   const [isSaving, setSaving] = useState(false);
@@ -53,13 +57,24 @@ export default function SettingsPage() {
    * Handle form submission to save the settings
    * @param event the form submission event
    */
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | { preventDefault?: () => {}; currentTarget: HTMLFormElement },
+    confirmed?: boolean
+  ) => {
+    event?.preventDefault?.();
 
     setSaving(true);
 
     const formData = new FormData(event.currentTarget);
     const values = getConfigFromForm(formData);
+
+    if (initialConfig?.enabled && !values.enabled && !confirmed) {
+      setShowWarning(true);
+      setSaving(false);
+      return;
+    }
 
     try {
       const token = getToken();
@@ -156,11 +171,11 @@ export default function SettingsPage() {
       <Page.Title>
         {formatMessage(
           { id: 'Settings.PageTitle', defaultMessage: 'Settings - {name}' },
-          { name: getTranslation('plugin.name') }
+          { name: 'Better Auth' }
         )}
       </Page.Title>
       <Page.Main>
-        <form onSubmit={handleSubmit} onChange={handleChange}>
+        <form onSubmit={handleSubmit} onChange={handleChange} ref={formRef}>
           <Layouts.Header
             title={formatMessage({
               id: getTranslation('settings.name'),
@@ -291,6 +306,28 @@ export default function SettingsPage() {
           </Layouts.Content>
         </form>
       </Page.Main>
+      <WarningAlert
+        open={showWarning}
+        onCancel={() => setShowWarning(false)}
+        onConfirm={() => {
+          setShowWarning(false);
+          formRef.current && handleSubmit({ currentTarget: formRef.current }, true);
+        }}
+      >
+        <Typography variant="omega" textAlign="center">
+          {formatMessage({
+            id: getTranslation('settings.warning'),
+            defaultMessage:
+              'Turning MFA off will affect all users. Please review the settings carefully before saving.',
+          })}
+        </Typography>
+        <Typography textAlign="center" fontWeight="semiBold">
+          {formatMessage({
+            id: getTranslation('app.confirm.body'),
+            defaultMessage: 'Are you sure?',
+          })}
+        </Typography>
+      </WarningAlert>
     </>
   );
 }
