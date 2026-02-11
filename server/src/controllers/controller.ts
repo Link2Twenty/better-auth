@@ -145,18 +145,10 @@ const controller = ({ strapi }: { strapi: Core.Strapi }): controller => ({
       const accessResult = await sessionManager('admin').generateAccessToken(refreshToken);
       const { token: accessToken } = accessResult as { token: string };
 
-      const configuredSecure = strapi.config.get('admin.auth.cookie.secure');
-      const isProduction = process.env.NODE_ENV === 'production';
-      const isSecure = typeof configuredSecure === 'boolean' ? configuredSecure : isProduction;
-
       const domain: string | undefined = strapi.config.get('admin.auth.domain');
 
-      ctx.cookies.set('jwtToken', accessToken, {
-        httpOnly: false,
-        secure: isSecure,
-        overwrite: true,
-        domain,
-      });
+      const opt = { httpOnly: false, secure: ctx.request.secure, overwrite: true, domain };
+      ctx.cookies.set('jwtToken', accessToken, opt);
 
       ctx.cookies.set('strapi_admin_mfa', null, { expires: new Date(0) });
 

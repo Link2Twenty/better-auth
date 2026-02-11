@@ -7,18 +7,13 @@ const register: Plugin.LoadedPlugin['register'] = ({ strapi }) => {
   const adminPlugin = strapi.admin;
   const secret = strapi.config.get<string>('admin.auth.secret');
 
-  const configuredSecure = strapi.config.get<boolean | undefined>('admin.auth.cookie.secure');
-  const isProduction = process.env.NODE_ENV === 'production';
-  const isSecure = typeof configuredSecure === 'boolean' ? configuredSecure : isProduction;
   const domain = strapi.config.get<string | undefined>('admin.auth.domain');
-
-  const cookieOptions = { httpOnly: false, secure: isSecure, overwrite: true, domain };
 
   const loginRoute = adminPlugin.routes.admin.routes.find(
     ({ method, path }) => method === 'POST' && path === '/login'
   );
 
-  if (loginRoute) replaceLogin(loginRoute, secret, cookieOptions);
+  if (loginRoute) replaceLogin(loginRoute, secret, domain);
 
   strapi.server.use(async (ctx, next) => {
     const mfaCookie = ctx.cookies.get('strapi_admin_mfa');
@@ -45,7 +40,7 @@ const register: Plugin.LoadedPlugin['register'] = ({ strapi }) => {
  * @param secret The secret key for JWT
  * @param cookieOptions Options for setting cookies
  */
-const replaceLogin = (route: Core.Route, secret: string, cookieOptions: Record<string, any>) => {
+const replaceLogin = (route: Core.Route, secret: string, domain: string | undefined) => {
   route.config.middlewares = route.config.middlewares || [];
 
   route.config.middlewares.push(async (ctx, next) => {
@@ -81,7 +76,8 @@ const replaceLogin = (route: Core.Route, secret: string, cookieOptions: Record<s
     const newToken = jwt.sign(newPayload, secret, { expiresIn: '5m' });
     const expires = new Date(Date.now() + 5 * 60 * 1000);
 
-    ctx.cookies.set('strapi_admin_mfa', newToken, { ...cookieOptions, expires });
+    const opt = { domain, httpOnly: false, overwrite: true, secure: ctx.request.secure, expires };
+    ctx.cookies.set('strapi_admin_mfa', newToken, opt);
     ctx.body.data = { data: {}, error: null };
   });
 };
